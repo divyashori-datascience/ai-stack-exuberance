@@ -1,0 +1,50 @@
+layer,ticker,name,role,first_full_month_in_index,rationale
+chips,AMD,Advanced Micro Devices,core,2015-01 (sample start),CPUs and MI-series AI accelerators
+chips,ARM,Arm Holdings (ADR),core,2023-10,CPU IP licensed into AI servers and edge devices; IPO Sep 2023
+chips,AVGO,Broadcom,core,2015-01 (sample start),Custom AI ASICs (TPU/XPU) and data-centre networking silicon
+chips,INTC,Intel,laggard,2015-01 (sample start),CPU incumbent that lost AI share; included against hindsight bias
+chips,MRVL,Marvell Technology,core,2015-01 (sample start),Custom AI silicon and optical interconnect DSPs
+chips,NVDA,NVIDIA,core,2015-01 (sample start),GPU accelerators; dominant AI training/inference compute
+chips,QCOM,Qualcomm,laggard,2015-01 (sample start),Edge/mobile AI silicon; limited data-centre exposure
+chips,TSM,Taiwan Semiconductor (ADR),core,2015-01 (sample start),Foundry for virtually all leading AI accelerators
+memory_equipment,AMAT,Applied Materials,core,2015-01 (sample start),Wafer fab equipment
+memory_equipment,ASML,ASML Holding (ADR),core,2015-01 (sample start),EUV lithography monopoly
+memory_equipment,KLAC,KLA Corp,core,2015-01 (sample start),Process control and inspection equipment
+memory_equipment,LRCX,Lam Research,core,2015-01 (sample start),Etch/deposition equipment; memory-heavy exposure
+memory_equipment,MU,Micron Technology,core,2015-01 (sample start),DRAM and HBM memory for AI accelerators
+memory_equipment,STX,Seagate Technology,core,2015-01 (sample start),Mass-capacity HDD storage for data centres
+memory_equipment,TER,Teradyne,laggard,2015-01 (sample start),Semiconductor test equipment; mixed AI exposure
+memory_equipment,WDC,Western Digital,core,2015-01 (sample start),Storage (HDD; flash until 2025 SanDisk spin-off)
+cloud,AKAM,Akamai Technologies,laggard,2015-01 (sample start),Edge cloud / CDN; small AI exposure
+cloud,AMZN,Amazon,core,2015-01 (sample start),AWS; largest cloud provider
+cloud,DOCN,DigitalOcean,laggard,2021-04,SMB cloud and GPU droplets; IPO Mar 2021
+cloud,GOOGL,Alphabet (Class A),core,2015-01 (sample start),Google Cloud and in-house TPUs
+cloud,IBM,IBM,laggard,2015-01 (sample start),Hybrid cloud incumbent; included against hindsight bias
+cloud,META,Meta Platforms,core,2015-01 (sample start),Hyperscale AI infrastructure capex (internal cloud)
+cloud,MSFT,Microsoft,core,2015-01 (sample start),Azure; OpenAI partner
+cloud,ORCL,Oracle,core,2015-01 (sample start),OCI; large AI-compute contracts
+power_datacentre,CEG,Constellation Energy,core,2022-02,Nuclear fleet; hyperscaler PPAs; spun off Feb 2022
+power_datacentre,DLR,Digital Realty,core,2015-01 (sample start),Wholesale data-centre REIT
+power_datacentre,EQIX,Equinix,core,2015-01 (sample start),Largest colocation data-centre REIT
+power_datacentre,ETN,Eaton,core,2015-01 (sample start),Electrical power management for data centres
+power_datacentre,NRG,NRG Energy,core,2015-01 (sample start),Power generation; data-centre power contracts
+power_datacentre,PWR,Quanta Services,core,2015-01 (sample start),Grid and power infrastructure construction
+power_datacentre,VRT,Vertiv,core,2018-09,Data-centre power and thermal management; listed Feb 2020
+power_datacentre,VST,Vistra,core,2016-11,Nuclear/gas generation; listed Oct 2016
+software,ADBE,Adobe,laggard,2015-01 (sample start),Creative software seen as AI-disrupted; included against hindsight bias
+software,CRM,Salesforce,core,2015-01 (sample start),Enterprise software; Agentforce AI layer
+software,CRWD,CrowdStrike,core,2019-07,AI-native security; IPO Jun 2019
+software,DDOG,Datadog,core,2019-10,Observability for cloud/AI workloads; IPO Sep 2019
+software,INTU,Intuit,core,2015-01 (sample start),Financial software with AI assistants
+software,NOW,ServiceNow,core,2015-01 (sample start),Workflow software with embedded AI
+software,PANW,Palo Alto Networks,core,2015-01 (sample start),Security platform; AI-driven security
+software,PLTR,Palantir,core,2020-10,AI platform (AIP); listed Sep 2020
+software,SNOW,Snowflake,core,2020-10,Data cloud for AI workloads; IPO Sep 2020
+staples,CL,Colgate-Palmolive,control,2015-01 (sample start),Household and personal care
+staples,COST,Costco,control,2015-01 (sample start),Warehouse retail
+staples,KMB,Kimberly-Clark,control,2015-01 (sample start),Paper and personal care
+staples,KO,Coca-Cola,control,2015-01 (sample start),Beverages
+staples,MDLZ,Mondelez,control,2015-01 (sample start),Snacks
+staples,PEP,PepsiCo,control,2015-01 (sample start),Beverages and snacks
+staples,PG,Procter & Gamble,control,2015-01 (sample start),Household products
+staples,WMT,Walmart,control,2015-01 (sample start),Mass retail

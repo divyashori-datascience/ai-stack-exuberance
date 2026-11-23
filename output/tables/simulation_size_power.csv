@@ -1,0 +1,9 @@
+dgp,n,nsim,reject_rate_mc,reject_rate_wb,bubble_dated_correctly,interpretation
+bubble_psy,47,200,0.82,0.44,0.615,power (higher is better)
+bubble_psy,142,200,0.77,0.65,0.745,power (higher is better)
+rw_garch,47,200,0.075,0.01,NA,size (nominal 5%)
+rw_garch,142,200,0.075,0.02,NA,size (nominal 5%)
+rw_homosk,47,200,0.03,0.02,NA,size (nominal 5%)
+rw_homosk,142,200,0.075,0.025,NA,size (nominal 5%)
+rw_volbreak,47,200,0.215,0.035,NA,size (nominal 5%)
+rw_volbreak,142,200,0.285,0.07,NA,size (nominal 5%)
