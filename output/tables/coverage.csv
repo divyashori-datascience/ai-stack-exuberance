@@ -1,0 +1,7 @@
+layer,n_constituents,n_at_start,n_at_end,index_start,pass_min4_from_start
+chips,8,7,8,2015-01-01,TRUE
+memory_equipment,8,8,8,2015-01-01,TRUE
+cloud,8,7,8,2015-01-01,TRUE
+power_datacentre,8,5,8,2015-01-01,TRUE
+software,9,5,9,2015-01-01,TRUE
+staples,8,8,8,2015-01-01,TRUE

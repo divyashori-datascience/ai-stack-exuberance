@@ -1,0 +1,50 @@
+ticker,name,layer,role,rationale
+NVDA,NVIDIA,chips,core,GPU accelerators; dominant AI training/inference compute
+AMD,Advanced Micro Devices,chips,core,CPUs and MI-series AI accelerators
+AVGO,Broadcom,chips,core,Custom AI ASICs (TPU/XPU) and data-centre networking silicon
+MRVL,Marvell Technology,chips,core,Custom AI silicon and optical interconnect DSPs
+TSM,Taiwan Semiconductor (ADR),chips,core,Foundry for virtually all leading AI accelerators
+QCOM,Qualcomm,chips,laggard,Edge/mobile AI silicon; limited data-centre exposure
+INTC,Intel,chips,laggard,CPU incumbent that lost AI share; included against hindsight bias
+ARM,Arm Holdings (ADR),chips,core,CPU IP licensed into AI servers and edge devices; IPO Sep 2023
+MU,Micron Technology,memory_equipment,core,DRAM and HBM memory for AI accelerators
+WDC,Western Digital,memory_equipment,core,Storage (HDD; flash until 2025 SanDisk spin-off)
+STX,Seagate Technology,memory_equipment,core,Mass-capacity HDD storage for data centres
+AMAT,Applied Materials,memory_equipment,core,Wafer fab equipment
+LRCX,Lam Research,memory_equipment,core,Etch/deposition equipment; memory-heavy exposure
+KLAC,KLA Corp,memory_equipment,core,Process control and inspection equipment
+ASML,ASML Holding (ADR),memory_equipment,core,EUV lithography monopoly
+TER,Teradyne,memory_equipment,laggard,Semiconductor test equipment; mixed AI exposure
+MSFT,Microsoft,cloud,core,Azure; OpenAI partner
+AMZN,Amazon,cloud,core,AWS; largest cloud provider
+GOOGL,Alphabet (Class A),cloud,core,Google Cloud and in-house TPUs
+META,Meta Platforms,cloud,core,Hyperscale AI infrastructure capex (internal cloud)
+ORCL,Oracle,cloud,core,OCI; large AI-compute contracts
+IBM,IBM,cloud,laggard,Hybrid cloud incumbent; included against hindsight bias
+AKAM,Akamai Technologies,cloud,laggard,Edge cloud / CDN; small AI exposure
+DOCN,DigitalOcean,cloud,laggard,SMB cloud and GPU droplets; IPO Mar 2021
+EQIX,Equinix,power_datacentre,core,Largest colocation data-centre REIT
+DLR,Digital Realty,power_datacentre,core,Wholesale data-centre REIT
+ETN,Eaton,power_datacentre,core,Electrical power management for data centres
+PWR,Quanta Services,power_datacentre,core,Grid and power infrastructure construction
+NRG,NRG Energy,power_datacentre,core,Power generation; data-centre power contracts
+VST,Vistra,power_datacentre,core,Nuclear/gas generation; listed Oct 2016
+VRT,Vertiv,power_datacentre,core,Data-centre power and thermal management; listed Feb 2020
+CEG,Constellation Energy,power_datacentre,core,Nuclear fleet; hyperscaler PPAs; spun off Feb 2022
+CRM,Salesforce,software,core,Enterprise software; Agentforce AI layer
+NOW,ServiceNow,software,core,Workflow software with embedded AI
+ADBE,Adobe,software,laggard,Creative software seen as AI-disrupted; included against hindsight bias
+INTU,Intuit,software,core,Financial software with AI assistants
+PANW,Palo Alto Networks,software,core,Security platform; AI-driven security
+PLTR,Palantir,software,core,AI platform (AIP); listed Sep 2020
+SNOW,Snowflake,software,core,Data cloud for AI workloads; IPO Sep 2020
+DDOG,Datadog,software,core,Observability for cloud/AI workloads; IPO Sep 2019
+CRWD,CrowdStrike,software,core,AI-native security; IPO Jun 2019
+PG,Procter & Gamble,staples,control,Household products
+KO,Coca-Cola,staples,control,Beverages
+PEP,PepsiCo,staples,control,Beverages and snacks
+WMT,Walmart,staples,control,Mass retail
+COST,Costco,staples,control,Warehouse retail
+CL,Colgate-Palmolive,staples,control,Household and personal care
+MDLZ,Mondelez,staples,control,Snacks
+KMB,Kimberly-Clark,staples,control,Paper and personal care

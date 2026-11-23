@@ -1,0 +1,7 @@
+layer,settings,rejections_95,share
+memory_equipment,16,16,1
+power_datacentre,16,9,0.5625
+chips,16,5,0.3125
+software,16,2,0.125
+cloud,16,1,0.0625
+staples,16,1,0.0625

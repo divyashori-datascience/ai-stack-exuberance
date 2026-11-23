@@ -1,0 +1,13 @@
+layer,window,n_tested,n_explosive,share_explosive,explosive_names
+chips,full,8,0,0,
+memory_equipment,full,8,1,0.125,STX
+cloud,full,8,1,0.125,DOCN
+power_datacentre,full,8,1,0.125,VST
+software,full,9,0,0,
+staples,full,8,0,0,
+chips,post,8,0,0,
+memory_equipment,post,8,2,0.25,WDC STX
+cloud,post,8,1,0.125,DOCN
+power_datacentre,post,8,1,0.125,VST
+software,post,9,0,0,
+staples,post,8,0,0,

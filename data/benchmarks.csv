@@ -1,0 +1,8 @@
+ticker,name,type,use
+SPY,SPDR S&P 500 ETF (adjusted = total return),benchmark,Market adjustment (relative series)
+SMH,VanEck Semiconductor ETF,etf_check,Cross-check for chips and equipment layers
+IGV,iShares Expanded Tech-Software ETF,etf_check,Cross-check for software layer
+SKYY,First Trust Cloud Computing ETF,etf_check,Cross-check for cloud layer
+XLP,Consumer Staples Select Sector SPDR,etf_check,Cross-check for staples control
+AAPL,Apple,bridge,Magnificent Seven member for bridge to Basele-Phillips-Shi
+TSLA,Tesla,bridge,Magnificent Seven member for bridge to Basele-Phillips-Shi

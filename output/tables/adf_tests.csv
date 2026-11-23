@@ -1,0 +1,15 @@
+series,variable,deterministics,lags_bic,tau,cv_5pct,reject_unit_root_5pct
+chips,log price,trend,1,-2.8936329982876954,-3.43,FALSE
+chips,log return,drift,1,-8.533662556135926,-2.88,TRUE
+memory_equipment,log price,trend,1,-1.515356179769427,-3.43,FALSE
+memory_equipment,log return,drift,1,-7.593007454320646,-2.88,TRUE
+cloud,log price,trend,1,-2.658721892783133,-3.43,FALSE
+cloud,log return,drift,1,-8.566552287722283,-2.88,TRUE
+power_datacentre,log price,trend,1,-1.697916576303501,-3.43,FALSE
+power_datacentre,log return,drift,1,-8.411169738283256,-2.88,TRUE
+software,log price,trend,1,-2.337245239962234,-3.43,FALSE
+software,log return,drift,1,-8.332517886939817,-2.88,TRUE
+staples,log price,trend,1,-3.622059974851972,-3.43,TRUE
+staples,log return,drift,1,-10.89633854319386,-2.88,TRUE
+SPY,log price,trend,1,-2.9433194750028115,-3.43,FALSE
+SPY,log return,drift,1,-9.982528392841086,-2.88,TRUE
