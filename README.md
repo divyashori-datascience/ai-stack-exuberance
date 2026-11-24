@@ -124,7 +124,7 @@ ai-stack-exuberance/
 | Step | Method | Purpose |
 |---|---|---|
 | Baseline | Left-tailed ADF on prices and returns | Confirm unit root in prices, stationary returns |
-| **Main** | **Right-tailed GSADF** (Phillips, Shi & Yu 2015) | Test each layer for explosive behaviour |
+| **Main** | Right-tailed GSADF (Phillips, Shi & Yu 2015) | Test each layer for explosive behaviour |
 | Date-stamping | BSADF sequence vs critical values | Identify when episodes start and end |
 | Critical values | Wild bootstrap (primary) and Monte Carlo | Wild bootstrap is robust to changing volatility |
 | Robustness | 16-setting grid, lag 1, single stocks, leave-one-out | Check the verdict is not an artefact |
