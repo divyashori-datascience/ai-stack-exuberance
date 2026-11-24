@@ -1,101 +1,197 @@
-# Where in the AI stack is the exuberance?
+# Where in the AI Stack Is the Exuberance?
 
-**Layer-by-layer explosive-root (GSADF) tests on AI-related US stocks, and how robust the answer is to the definition of "explosive".**
+GSADF bubble tests across five layers of the AI value chain, with consumer staples as a control.
+Monthly US stock data, January 2015 – October 2026, analysed in R with `exuber`.
 
-Case study for *Time Series Analysis in Finance* (TSAF F2026), HSLU MSc Applied Information and Data Science.
-Michele Mogos · Divya Shori | Lecturers: Thomas Ankenbrand, Denis Bieri
+**Course:** Time Series Analysis in Finance (TSAF F2026), HSLU MSc Applied Information and Data Science
+**Authors:** Divya Shori, Michele Mogos
+**Lecturers:** Thomas Ankenbrand, Denis Bieri
 
 ---
 
-## Research questions
+## Contents
+
+1. [Research Questions](#1-research-questions)
+2. [Key Findings](#2-key-findings)
+3. [Repository Structure](#3-repository-structure)
+4. [Data](#4-data)
+5. [Methodology](#5-methodology)
+6. [How to Run](#6-how-to-run)
+7. [Outputs](#7-outputs)
+8. [Limitations](#8-limitations)
+9. [References](#9-references)
+
+---
+
+## 1. Research Questions
+
+Instead of asking whether "AI" as a whole is in a bubble, we test **which layer** of the AI value chain shows explosive price behaviour.
 
 | | Question |
 |---|---|
-| **RQ1: Where** | Is exuberance a one-stock story (Nvidia), a chips story, or chain-wide across the AI value chain: chips, memory/storage/equipment, cloud, power & data centres, software? |
-| **RQ2: Robustness** | Does the verdict survive changes of definition (log prices vs levels), critical values (wild bootstrap vs Monte Carlo), window (full vs post-ChatGPT) and market adjustment (raw vs relative to the S&P 500)? |
-| **RQ3: Timing** | If several layers are exuberant, in which order did they start and end? (exploratory) |
+| **RQ1 — Where** | Is exuberance a single-stock story (Nvidia), a chips story, or spread across the whole value chain? |
+| **RQ2 — Robustness** | Does the verdict survive changes in definition (log prices vs levels), critical values (wild bootstrap vs Monte Carlo), window (full vs post-ChatGPT) and market adjustment (raw vs relative to the S&P 500)? |
+| **RQ3 — Timing** | If several layers are exuberant, in which order did their episodes start and end? |
 
-Consumer staples act as a **control layer** that should *not* be flagged.
+**The five AI layers:**
+- chips
+- memory, storage & equipment
+- cloud
+- power & data centres
+- software
 
-## Headline results (data to Oct 2026)
+**Control:** consumer staples, which should *not* be flagged.
 
-1. **Only one layer is robustly explosive: memory, storage & equipment.** It rejects the no-bubble null in **16/16** settings. Next come power & data centres (9/16), chips (5/16, all with Monte Carlo CVs), software (2/16) and cloud (1/16). The staples control rejects in 1/16 settings, a false alarm in the weakest cell (levels, Monte Carlo, short window).
-2. **The memory verdict comes from a sub-segment, not from one stock.** Under wild-bootstrap CVs, leaving out MU, WDC *or* STX (any one) pushes the index just below the 5% CV, while leaving out any equipment name keeps the rejection. Individually only STX (and WDC post-2022) reject. The storage/memory names co-move, so aggregation *reveals* a common explosive component instead of masking it.
-3. **Chips, the "obvious" AI layer, is not explosive in log prices** with wild-bootstrap CVs, either as an index or for any single chip stock (NVDA included). Chips is flagged only on price levels, or with Monte Carlo CVs, or at weekly frequency (May–Jun 2026).
-4. **Definition drives the verdict (E3).** On price levels with Monte Carlo CVs, *all 12* bridge stocks (Magnificent 7 plus AVGO, AMD, ORCL, MU, PLTR) look explosive, MSFT and GOOGL included. The published "Nvidia is exuberant" result is reproduced only on levels. That setting flags steady compounding rather than acceleration.
-5. **Timing (RQ3), post-ChatGPT:** power & data centres goes first (late 2023 to early 2025, strongest relative to the S&P 500). Memory/storage/equipment follows (Nov 2025/Jan 2026 to Jun 2026). Chips appears only briefly at weekly frequency (May–Jun 2026). Cloud and software show no post-2022 episode.
+---
 
-6. **Validation by simulation:** Monte Carlo CVs reject a bubble-free random walk 21–29% of the time after a volatility break; the wild bootstrap stays at 2–7% but detects a simulated bubble only 44% of the time at T = 47.
+## 2. Key Findings
 
-Full write-up: [`report/findings.md`](report/findings.md).
+| # | Finding |
+|---|---|
+| 1 | **Only memory, storage & equipment is robustly explosive.** It rejects the no-bubble null in 16 of 16 settings. Next: power & data centres 9/16, chips 5/16, software 2/16, cloud 1/16. |
+| 2 | **The memory result comes from a sub-segment, not a single stock.** Removing MU, WDC or STX weakens it; removing any equipment maker does not. |
+| 3 | **Chips is not explosive in log prices**, neither as an index nor for any single chip stock, Nvidia included. |
+| 4 | **The definition drives the verdict.** On price levels with Monte Carlo critical values, all 12 big-tech stocks look explosive, Microsoft and Alphabet included. That setting picks up steady growth, not bubbles. |
+| 5 | **Timing:** power & data centres (2023–25) → memory/storage (late 2025 to mid-2026) → chips only briefly (mid-2026). |
+| 6 | **Simulation check:** Monte Carlo critical values wrongly flag up to 29% of bubble-free series when volatility shifts; the wild bootstrap stays at 2–7%. |
 
-## Repository layout
+Full results and interpretation: [`report/findings.md`](report/findings.md)
+
+---
+
+## 3. Repository Structure
 
 ```
-data/
-  constituents.csv        49 hand-selected stocks: layer, role (core/laggard/control), rationale
-  benchmarks.csv          SPY (market adjustment), ETF cross-checks, bridge names AAPL/TSLA
-  raw/daily_adjusted.csv  Yahoo Finance daily adjusted closes (cached for reproducibility)
-  processed/              month-end and week-end prices, layer indices
-R/
-  00_config.R             sample dates, PSY window rules, replications, seed
-  utils.R                 index construction, transformations, GSADF + date-stamping wrapper
-  01_download.R           quantmod download (falls back to Yahoo chart API if rate-limited)
-  02_build_indices.R      equal-weighted indices, coverage check, contribution shares
-  03_adf.R                left-tailed ADF on prices/returns + residual diagnostics
-  04_gsadf_main.R         MAIN: index-level GSADF + BSADF date-stamping; ETF cross-check
-  05_sensitivity_grid.R   16-setting grid per layer; lag-1 check
-  06_single_stocks.R      GSADF on every constituent; leave-one-out indices
-  07_replication_weekly.R Nvidia/bridge replication; weekly vs monthly
-  08_simulation.R         size and power of MC vs wild-bootstrap CVs
-  09_figures.R            figures
-output/tables/            all results as CSV
-output/figures/           report figures
-report/findings.md        results and interpretation
-run_all.R                 runs the full pipeline
+ai-stack-exuberance/
+│
+├── README.md                        Project overview (this file)
+├── run_all.R                        Runs the full pipeline end to end
+│
+├── data/
+│   ├── constituents.csv             49 stocks: layer, role, selection rationale
+│   ├── benchmarks.csv               S&P 500 (SPY), ETF cross-checks, bridge stocks
+│   ├── raw/
+│   │   └── daily_adjusted.csv       Daily adjusted prices from Yahoo Finance
+│   └── processed/
+│       ├── monthly_prices.csv       Month-end prices
+│       ├── weekly_prices.csv        Week-end prices
+│       ├── layer_indices_monthly.csv
+│       └── layer_indices_weekly.csv
+│
+├── R/
+│   ├── 00_config.R                  Sample dates, window rules, seeds
+│   ├── utils.R                      Index construction and GSADF helpers
+│   ├── 01_download.R                Step 1 · Download prices
+│   ├── 02_build_indices.R           Step 2 · Build equal-weighted layer indices
+│   ├── 03_adf.R                     Step 3 · Standard ADF baseline
+│   ├── 04_gsadf_main.R              Step 4 · MAIN: index-level GSADF + date-stamping
+│   ├── 05_sensitivity_grid.R        Step 5 · 16-setting robustness grid
+│   ├── 06_single_stocks.R           Step 6 · Individual stocks + leave-one-out
+│   ├── 07_replication_weekly.R      Step 7 · Nvidia replication + weekly check
+│   ├── 08_simulation.R              Step 8 · Size and power simulation
+│   └── 09_figures.R                 Step 9 · Figures
+│
+├── output/
+│   ├── tables/                      All results as CSV
+│   └── figures/                     Report figures (PNG)
+│
+└── report/
+    └── findings.md                  Results write-up
 ```
 
-## Reproduce
+---
 
-Requires R ≥ 4.3 and the packages `exuber quantmod xts zoo dplyr tidyr readr purrr tibble ggplot2 urca scales jsonlite curl`.
+## 4. Data
+
+| Item | Detail |
+|---|---|
+| **Source** | Yahoo Finance (`quantmod`), daily adjusted closes |
+| **Period** | January 2015 – October 2026 (T = 142 months) |
+| **Universe** | 49 US-listed stocks across 5 AI layers + staples control (8–9 per layer) |
+| **Benchmark** | S&P 500 (SPY) for market adjustment |
+| **Cross-checks** | SMH, IGV, SKYY, XLP sector ETFs |
+
+**Index construction**
+- Each layer is an **equal-weighted index**, rebalanced monthly and rebased to 100 at January 2015.
+- A stock enters from its first **full** month of trading.
+- An index starts once at least 4 stocks have prices. All layers meet this from the start.
+- Each layer deliberately includes **laggards** (e.g. Intel, IBM, Adobe) to limit hindsight bias.
+
+---
+
+## 5. Methodology
+
+| Step | Method | Purpose |
+|---|---|---|
+| Baseline | Left-tailed ADF on prices and returns | Confirm unit root in prices, stationary returns |
+| **Main** | **Right-tailed GSADF** (Phillips, Shi & Yu 2015) | Test each layer for explosive behaviour |
+| Date-stamping | BSADF sequence vs critical values | Identify when episodes start and end |
+| Critical values | Wild bootstrap (primary) and Monte Carlo | Wild bootstrap is robust to changing volatility |
+| Robustness | 16-setting grid, lag 1, single stocks, leave-one-out | Check the verdict is not an artefact |
+| Validation | Simulation of random walks and bubbles | Measure false-alarm rate and detection power |
+
+**Key settings**
+
+| Parameter | Value |
+|---|---|
+| Minimum window | ⌊T(0.01 + 1.8/√T)⌋ → 22 months (full), 12 months (post-ChatGPT) |
+| Minimum episode length | round(log T) → 5 months (full), 4 months (post-ChatGPT) |
+| ADF lag | 0 (lag 1 as a robustness check) |
+| Bootstrap draws | 999 wild bootstrap, 2,000 Monte Carlo |
+| Significance | 5% |
+
+---
+
+## 6. How to Run
+
+**Requirements:** R ≥ 4.3
 
 ```r
-install.packages(c("exuber","quantmod","xts","zoo","dplyr","tidyr","readr","purrr",
-                   "tibble","ggplot2","urca","scales","jsonlite","curl"))
+install.packages(c("exuber", "quantmod", "xts", "zoo", "dplyr", "tidyr", "readr",
+                   "purrr", "tibble", "ggplot2", "urca", "scales", "jsonlite", "curl"))
 ```
+
+**Run from the repository root:**
 
 ```bash
-Rscript run_all.R --no-download   # use the cached prices in data/raw (exact replication)
-Rscript run_all.R                 # re-download from Yahoo first (prices may be revised)
+# Option A — use the cached data (exact replication)
+Rscript run_all.R --no-download
+
+# Option B — download fresh data first
+Rscript run_all.R
 ```
 
-Run from the repository root. Seeds are fixed (`SEED` in `00_config.R`). Runtime is about 25 minutes on 2 cores.
+Runtime is about 20 minutes. Seeds are fixed, so results are reproducible.
 
-## Design decisions
+---
 
-**Index construction** (lecturer point 1)
-- Each layer is an equal-weighted index of 8–9 stocks built from **monthly simple returns, rebalanced monthly**, rebased to 100 at end-January 2015.
-- A stock contributes a return in month *t* only if it has a price at the end of both *t−1* and *t*. A listing month (partial) therefore never enters, and the stock joins from its first full month.
-- An index starts once ≥ 4 constituents have prices. Every layer has ≥ 4 from Jan 2015 (`output/tables/coverage.csv`).
-- Each layer deliberately includes **laggards** (INTC, QCOM, IBM, AKAM, DOCN, ADBE, TER) to limit hindsight bias.
-- To check that individual stocks don't drive the results we use (a) contribution shares of each stock to the cumulative index return (`contributions.csv`), (b) leave-one-out indices under both CV types, and (c) GSADF on every constituent.
+## 7. Outputs
 
-**Tests**
-- GSADF (Phillips, Shi & Yu 2015) via `exuber`.
-- Minimum window ⌊T(0.01 + 1.8/√T)⌋: 22 months for T = 142, 12 for the post-ChatGPT window (T = 47), 50 weeks for weekly.
-- Minimum episode duration round(log T): 5 months, 4 months, 6 weeks.
-- ADF lag 0 (lag 1 as a robustness check).
-- 95% critical values from a wild bootstrap (999 draws, series-specific, robust to the ARCH effects found in `03_adf.R`) and from Monte Carlo (2,000 draws; 500 for weekly T).
-- Date-stamped episodes are reported for every series, but are only interpreted as evidence where the series-level GSADF test rejects.
+| File | Content |
+|---|---|
+| `output/tables/gsadf_main.csv` | Main index-level results |
+| `output/tables/episodes_main.csv` | Date-stamped explosive episodes |
+| `output/tables/gsadf_grid.csv` | 16-setting sensitivity grid |
+| `output/tables/gsadf_stocks.csv` | Individual-stock results |
+| `output/tables/gsadf_leave_one_out.csv` | Leave-one-out results |
+| `output/tables/replication_bridge.csv` | Nvidia / big-tech replication |
+| `output/tables/simulation_size_power.csv` | Simulation results |
+| `output/figures/` | Six figures used in the report |
 
-**Data limitations**
-- Free Yahoo data exclude delisted firms, so survivorship bias is limited, not removed.
-- Index dates are labelled with the first day of the month but refer to **month-end** prices.
-- In weekly tables, the `months_explosive` column counts **weeks**.
+---
 
-## Sources
+## 8. Limitations
 
-- Phillips, Shi & Yu (2015), *Testing for Multiple Bubbles*, International Economic Review.
-- Vasilopoulos, Pavlidis & Martínez-García (2022), *exuber: Recursive Right-Tailed Unit Root Testing*, Journal of Statistical Software.
-- Basele, Phillips & Shi, *From Innovation to Speculation: AI and the Magnificent Seven*, Cowles Foundation DP 2537 (2026).
-- Wang & Chen, *Boom, Bubble, or Buildout?*, arXiv 2606.01575; Sarkar & Wells, arXiv 2604.12062; Chen et al., arXiv 2604.25826.
+- **Survivorship bias:** Yahoo data exclude delisted firms.
+- **Hindsight in selection:** reduced by including laggards in every layer.
+- **Short post-ChatGPT window:** with 47 months, the test has limited power to detect bubbles.
+- **Weekly check:** uses Monte Carlo critical values only; the wild bootstrap was too slow at weekly frequency.
+- **Date labels:** index dates show the first day of the month but refer to month-end prices.
+
+---
+
+## 9. References
+
+- Phillips, P. C. B., Shi, S. & Yu, J. (2015). Testing for Multiple Bubbles. *International Economic Review*.
+- Vasilopoulos, K., Pavlidis, E. & Martínez-García, E. (2022). exuber: Recursive Right-Tailed Unit Root Testing with R. *Journal of Statistical Software*.
+- Basele, Phillips & Shi (2026). From Innovation to Speculation: AI and the Magnificent Seven. Cowles Foundation Discussion Paper 2537.
